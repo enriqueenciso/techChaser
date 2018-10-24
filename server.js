@@ -10,6 +10,7 @@ app.use(express.static(__dirname + '/dist/techchaser'));
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
 app.get('/*', function(req, res) {
+  console.log(__dirname);
   res.sendFile(path.join(__dirname + '/dist/techchaser/index.html'));
 });
 
