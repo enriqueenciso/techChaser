@@ -5,13 +5,13 @@ const app = express();
 
 // Run the app by serving the static files
 // in the dist directory
-app.use(express.static(__dirname + '/dist/techChaser'));
+app.use(express.static(__dirname + '/dist/techchaser'));
 
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
 app.get('/*', function(req, res) {
   console.log(__dirname);
-  res.sendFile(path.join(__dirname + '/dist/techChaser/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/techchaser/index.html'));
 });
 
 // Start the app by listening on the default
