@@ -1,0 +1,32 @@
+<div class='component-wrapper'>
+  <table>
+    <tr class='timer-row'>
+      <td>
+        {{ this.remainingDays | number:'3.0-0' }}
+      </td>
+      <td>
+        {{ this.remainingHours | number:'2.0-0' }}
+      </td>
+      <td>
+        {{ this.remainingMinutes | number:'2.0-0' }}
+      </td>
+      <td>
+        {{ this.remainingSeconds | number:'2.0-0' }}
+      </td>
+    </tr>
+    <tr class='labels-row'>
+      <td>
+        Days
+      </td>
+      <td>
+        Hours
+      </td>
+      <td>
+        Minutes
+      </td>
+      <td>
+        Seconds
+      </td>
+    </tr>
+  </table>
+</div>
