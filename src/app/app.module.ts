@@ -5,12 +5,21 @@ import { AppComponent } from './app.component';
 import { CountdownTimerComponent } from './shared/components/countdown-timer/countdown-timer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatInputModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatCardModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatInputModule,
+  MatSelectModule,
+} from '@angular/material';
 import { MainNavComponent } from './shared/components/main-nav/main-nav.component';
 import { routingModule } from './app.routing';
 import { AboutUsModule } from './modules/about-us/about-us.module';
 import { HomeComponent } from './shared/components/home/home.component';
-import { FormEventComponent } from './shared/components/form-event/form-event.component';
+import { EventFormComponent } from './shared/components/event-form/event-form.component';
 
 
 @NgModule({
@@ -19,7 +28,7 @@ import { FormEventComponent } from './shared/components/form-event/form-event.co
     CountdownTimerComponent,
     MainNavComponent,
     HomeComponent,
-    FormEventComponent,
+    EventFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +43,8 @@ import { FormEventComponent } from './shared/components/form-event/form-event.co
     AboutUsModule,
     routingModule,
     MatInputModule,
+    MatCardModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
