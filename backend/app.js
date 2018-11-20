@@ -1,20 +1,29 @@
 const path = require("path");
 const express = require('express');
 const bodyParser = require("body-parser");
-const mongoose = require ("mongoose");
+var {mongoose} = require('./server/db/techChaserDB');
+var {Event} = require('./server/models/events');
 //const postRouters =  require('./routes/posts');
 
 
 const app = express();
 
-// CONNECT TO A MONGODB DATABASE WITH pASSWORD GENERATED IN SECURITY CLUSTER
-mongoose.connect("mongodb://localhost:27017/events", { useNewUrlParser: true })
-.then(() => {
-  console.log('Connected to database!');
-})
-.catch(() =>{
-  console.log('Connection failed!');
+
+// Run the app by serving the static files
+// in the dist directory
+app.use(express.static(__dirname + '/dist/techchaser'));
+
+// For all GET requests, send back index.html
+// so that PathLocationStrategy can be used
+app.get('/*', function(req, res) {
+  console.log(__dirname);
+  res.sendFile(path.join(__dirname + '/dist/techchaser/index.html'));
 });
+
+// Start the app by listening on the default
+// Heroku port
+//app.listen(process.env.PORT || 8080);
+
 
 
 app.use(bodyParser.json());
@@ -29,6 +38,6 @@ app.use((req, res, next)=>{
 });
 
 //link to routes -> posts.js
-app.use('/api/posts', postRouters);
+//app.use('/api/posts', postRouters);
 
 module.exports = app;
