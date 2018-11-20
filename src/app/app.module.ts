@@ -14,12 +14,15 @@ import {
   MatListModule,
   MatInputModule,
   MatSelectModule,
+  MatNativeDateModule,
 } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MainNavComponent } from './shared/components/main-nav/main-nav.component';
 import { routingModule } from './app.routing';
 import { AboutUsModule } from './modules/about-us/about-us.module';
 import { HomeComponent } from './shared/components/home/home.component';
 import { EventFormComponent } from './shared/components/event-form/event-form.component';
+
 
 
 @NgModule({
@@ -45,6 +48,8 @@ import { EventFormComponent } from './shared/components/event-form/event-form.co
     MatInputModule,
     MatCardModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

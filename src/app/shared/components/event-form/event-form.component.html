@@ -1,25 +1,32 @@
 
-<form class="event-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Favorite food" value="Sushi">
-  </mat-form-field><br>
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Event Name"></textarea>
-  </mat-form-field><br>
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Status Event"></textarea>
-  </mat-form-field><br>
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Event Date"></textarea>
-  </mat-form-field><br>
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Region"></textarea>
-  </mat-form-field><br>
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Description"></textarea>
-  </mat-form-field><br>
-  <button
-      mat-raised-button
-      color="accent"
-      type="submit">Save Event</button>
-</form>
+  <form class="event-form example-form">
+    <mat-card>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Event Name">
+      </mat-form-field><br>
+
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Status event">
+          <mat-option *ngFor="let statusEvent of statusEvents" [value]="statusEvent.value">
+            {{statusEvent.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field><br>
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="Angular forms">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field><br>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Region">
+      </mat-form-field><br>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Description"></textarea>
+      </mat-form-field><br>
+      <button
+          mat-raised-button
+          color="accent"
+          type="submit">Save Event</button>
+    </mat-card>
+  </form>
+
