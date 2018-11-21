@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var Todo = mongoose.model('Events', {
+var Event = mongoose.model('Events', {
     eventName: {
         type: String,
         required: true,
@@ -33,4 +33,4 @@ var Todo = mongoose.model('Events', {
     }
 });
 
-module.exports = {Todo}
+module.exports = {Event}
