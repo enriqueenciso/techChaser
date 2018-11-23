@@ -2,9 +2,7 @@ const path = require("path");
 const express = require('express');
 const bodyParser = require("body-parser");
 var {mongoose} = require('./server/db/techChaserDB');
-var {Event} = require('./server/models/events');
-//const postRouters =  require('./routes/posts');
-
+const eventRouters =  require('./routes/events');
 
 const app = express();
 
@@ -25,8 +23,6 @@ app.get('/*', function(req, res) {
 // Heroku port
 //app.listen(process.env.PORT || 8080);
 
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/images', express.static(path.join('backend/images')));
@@ -39,6 +35,6 @@ app.use((req, res, next)=>{
 });
 
 //link to routes -> posts.js
-//app.use('/api/posts', postRouters);
+app.use('/events', eventRouters);
 
 module.exports = app;

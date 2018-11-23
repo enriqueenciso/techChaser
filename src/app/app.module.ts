@@ -7,6 +7,7 @@ import { CountdownTimerComponent } from './shared/components/countdown-timer/cou
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { HttpClientModule } from '@angular/common/http';
 import {
   MatToolbarModule,
   MatCardModule,
@@ -39,6 +40,7 @@ import { EventFormComponent } from './shared/components/events/event-form/event-
     AboutUsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,

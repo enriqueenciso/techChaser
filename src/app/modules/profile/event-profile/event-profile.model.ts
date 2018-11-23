@@ -2,7 +2,7 @@ import { GameProfile } from '../game-profile/game-profile.model';
 
 export interface EventProfile {
   name: String;
-  pastEvent: Boolean; // True = already happened, False = future event.
+  statusEvent: Boolean; // True = already happened, False = future event.
   imageURL: String;
   date: Date;
   region: String;

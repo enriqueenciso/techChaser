@@ -1,5 +1,5 @@
 
-  <form class="event-form example-form" [formGroup]="eventForm">
+  <form class="event-form example-form" [formGroup]="eventForm" (submit)="onSaveEvent()">
     <mat-card>
       <h2>CREATE A EVENT</h2>
       <mat-form-field class="example-full-width">
@@ -7,14 +7,17 @@
           matInput
           type="text"
           formControlName="eventName"
-          placeholder="Event Name">
+          placeholder="Event Name"
+          required>
       </mat-form-field><br>
 
       <mat-form-field class="example-full-width">
         <mat-select
           matInput
           formControlName="eventStatus"
-          placeholder="Event Status">
+          placeholder="Event Status"
+          matNativeControl
+          required>
             <mat-option *ngFor="let statusEvent of statusEvents" [value]="statusEvent.value">
               {{statusEvent.viewValue}}
             </mat-option>
@@ -23,25 +26,27 @@
       <mat-form-field class="example-full-width">
           <input
             matInput
-            [matDatepicker]="picker1"
+            [matDatepicker]="picker"
             formControlName="eventDate"
-            [formControl]="date"
-            placeholder="Event Date">
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
+            placeholder="Event Date"
+            required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
       </mat-form-field><br>
       <mat-form-field class="example-full-width">
         <input
           matInput
           formControlName="eventRegion"
-          placeholder="Region">
+          placeholder="Region"
+          required>
       </mat-form-field><br>
       <mat-form-field class="example-full-width">
         <textarea
           matInput
           row="4"
           formControlName="eventDescription"
-          placeholder="Description"></textarea>
+          placeholder="Description"
+          required></textarea>
       </mat-form-field><br>
       <button
           mat-raised-button

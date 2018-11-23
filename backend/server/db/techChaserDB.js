@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost:27017/TechChaserApp', { useNewUrlParser: true })
 .then(() => {
-  console.log('Connected to database!');
+  console.log('Connected to TechChaser Database!');
 })
 .catch(() =>{
   console.log('Connection failed!');

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-// import { StatusEvent } from '../event-form/event-form.model';
+import { StatusEvent } from '../event-status.model';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { EventComponentsService } from '../event-components.service';
 
-export interface StatusEvent {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-event-form',
@@ -19,8 +17,10 @@ export class EventFormComponent implements OnInit {
   date = new FormControl();
   serializedDate = new FormControl((new Date()).toISOString());
 
+  // Spinner loading
   isLoading = false;
 
+  // Operation
   private mode = 'create';
   private postId: string;
 
@@ -34,7 +34,10 @@ export class EventFormComponent implements OnInit {
     {value: 'finished', viewValue: 'Finished'}
   ];
 
-  constructor() { }
+  constructor(
+    public eventComponentsService: EventComponentsService) {
+      // this.eventForm = eventComponentsService.addEvent();
+     }
 
   ngOnInit() {
     // Validation
@@ -58,28 +61,22 @@ export class EventFormComponent implements OnInit {
     });
   }
 
-/*
-  onSavePost() {
-    if (this.form.invalid) {
+
+  onSaveEvent() {
+    alert(`Se esta enviando: ${this.eventForm.value.eventName}, ${this.eventForm.value.eventStatus}, ${this.eventForm.value.eventDate},
+    ${this.eventForm.value.eventRegion}, ${this.eventForm.value.eventDescription}`);
+    if (this.eventForm.invalid) {
       return;
     }
-    this.isLoading = true;
-      if (this.mode === 'create') {
-        this.postsService.addPost(
-          this.form.value.title,
-          this.form.value.content,
-          this.form.value.image);
-      } else {
-        this.postsService.updatePost(
-          this.postId,
-          this.form.value.title,
-          this.form.value.content,
-          this.form.value.image
-        );
-      }
-      this.form.reset();
-    }
-*/
+      this.eventComponentsService.addEvent(
+        this.eventForm.value.eventName,
+        this.eventForm.value.eventStatus,
+        this.eventForm.value.eventRegion,
+        this.eventForm.value.eventDescription);
+    this.eventForm.reset();
+    alert('Event added!!!');
+  }
+
 
 // Add or edit Event
 
