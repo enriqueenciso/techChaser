@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 import { EventProfile } from 'src/app/modules/profile/event-profile/event-profile.model';
 
@@ -9,22 +9,50 @@ import { EventProfile } from 'src/app/modules/profile/event-profile/event-profil
   providedIn: 'root'
 })
 export class EventComponentsService {
-  private eventProfile: EventProfile[] = [];
+  private events: EventProfile[] = [];
+  private eventUpdated = new Subject<EventProfile[]>();
 
   constructor(private http: HttpClient) {}
-  addEvent(name: string, status: string, region: string, description: string) {
+  addEvent(name: string, status: string, date: Date, region: string, description: string) {
     // alert(`${name}, ${status}, ${region}, ${description}`);
+    /*
     const eventData = new FormData();
+    eventData.append('_id', id);
     eventData.append('name', name);
     eventData.append('status', status);
     eventData.append('region', region);
     eventData.append('description', description);
-    this.http
-      .post<{message: string; event: EventProfile}>(
-        'http://localhost:3000/api/events',
-        eventData
-      );
+    */
+    alert(date);
+      const event: EventProfile = { id: null, name: name, status: status, date: date,  region: region, description: description };
+      this.http
+      .post<{ message: string, postId: string }>('http://localhost:3000/api/events', event)
+      .subscribe(responseData => {
+        const id = responseData.postId;
+        event.id = id;
+        this.events.push(event);
+        this.eventUpdated.next([...this.events]);
+      });
   }
+
+  /*
+    / post("/api/contacts")
+    addEvent(name: string, status: string, region: string, description: string): Promise<void | EventProfile> {
+      return this.http.post(this.contactsUrl, newContact)
+                 .toPromise()
+                 .then(response => response.json() as Contact)
+                 .catch(this.handleError);
+  */
+
+  /*
+      // post("/api/contacts")
+    createContact(newContact: Contact): Promise<void | Contact> {
+      return this.http.post(this.contactsUrl, newContact)
+                 .toPromise()
+                 .then(response => response.json() as Contact)
+                 .catch(this.handleError);
+    }
+  */
 
   /*
     addPost(title: string, content: string, image: File) {

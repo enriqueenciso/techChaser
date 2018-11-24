@@ -71,6 +71,7 @@ export class EventFormComponent implements OnInit {
       this.eventComponentsService.addEvent(
         this.eventForm.value.eventName,
         this.eventForm.value.eventStatus,
+        this.eventForm.value.eventDate.toISOString(),
         this.eventForm.value.eventRegion,
         this.eventForm.value.eventDescription);
     this.eventForm.reset();

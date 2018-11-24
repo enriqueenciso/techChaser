@@ -35,6 +35,6 @@ app.use((req, res, next)=>{
 });
 
 //link to routes -> posts.js
-app.use('/events', eventRouters);
+app.use('/api/events', eventRouters);
 
 module.exports = app;

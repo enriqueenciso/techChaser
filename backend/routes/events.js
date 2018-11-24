@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const Event = require('../models/event');
+const {Event} = require('../models/event');
 // const router = express.Router();
 
 
@@ -10,15 +10,11 @@ app.use(bodyParser.json());
 
 // CONTACTS API ROUTES BELOW
 
-/*
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);
   res.status(code || 500).json({"error": message});
 }
-*/
-
-
 
 /*  "/api/contacts"
  *    GET: finds all contacts
@@ -28,23 +24,23 @@ function handleError(res, reason, message, code) {
 
 
 
-/*
+
 app.get("/api/contacts", function(req, res) {
 });
-*/
+
 
 app.post('', (req, res, next) => {
-  var event = new Event({
-    text: req.body.text
+  const event = new Event({
+    name: req.body.name,
+    status: req.body.status,
+    region: req.body.region,
+    description: req.body.description
   });
-  alert(event);
-  event.save().then((doc) => {
-    res.send(doc);
+  event.save().then(createdEvent => {
     res.status(201).json({
-      message: 'Event added successfully'
+      message: "Event added successfully",
+      postId: createdEvent._id
     });
-  }, (e) => {
-    res.status(400).send(e);
   });
 });
 
@@ -56,7 +52,7 @@ app.post('', (req, res, next) => {
  */
 
 
- /*
+
 app.get("/api/contacts/:id", function(req, res) {
 });
 
@@ -65,5 +61,5 @@ app.put("/api/contacts/:id", function(req, res) {
 
 app.delete("/api/contacts/:id", function(req, res) {
 });
-*/
+
 module.exports = app;

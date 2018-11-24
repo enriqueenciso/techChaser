@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var Event = mongoose.model('Events', {
+var Event = mongoose.model('Event', {
     name: {
       type: String,
       required: true,
@@ -15,11 +15,12 @@ var Event = mongoose.model('Events', {
       //trim remove withespaces in the begginning and in the end
       trim: true
     },
-    /*
+
     date: {
       type: Date,
+      default: Date.now,
       required: true,
-    },*/
+    },
     region: {
       type: String,
       required: true,
