@@ -66,6 +66,7 @@ export class EventFormComponent implements OnInit {
     alert(`Se esta enviando: ${this.eventForm.value.eventName}, ${this.eventForm.value.eventStatus}, ${this.eventForm.value.eventDate},
     ${this.eventForm.value.eventRegion}, ${this.eventForm.value.eventDescription}`);
     if (this.eventForm.invalid) {
+      alert('Filling out the form correctly');
       return;
     }
       this.eventComponentsService.addEvent(
